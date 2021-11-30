@@ -1,0 +1,11 @@
+﻿  sptintake1.1.cpp
+C:\Users\reims\source\repos\sptintake1.1\sptintake1.1\sptintake1.1.cpp(117,21): warning C4244: 'argument': conversion from 'double' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+C:\Users\reims\source\repos\sptintake1.1\sptintake1.1\sptintake1.1.cpp(146,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\reims\source\repos\sptintake1.1\sptintake1.1\sptintake1.1.cpp(48,10): warning C4101: 'myStream': unreferenced local variable
+  sptintake1.1.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  sptintake1.1.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  sptintake1.1.vcxproj -> C:\Users\reims\source\repos\sptintake1.1\Debug\sptintake1.1.exe
