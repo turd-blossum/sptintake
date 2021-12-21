@@ -1,4 +1,5 @@
 
+
 // sptintake1.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
@@ -55,7 +56,7 @@ int main()
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 	{
 		String^ strfilename = /*openFileDialog1->InitialDirectory + */openFileDialog1->FileName; // get the file path from the chosen file
-
+		
 		filename = strfilename;  // set the filepath to the filename variable
 
 	}
@@ -70,10 +71,9 @@ int main()
 	
 
 	filename2 = mSys2std(filename);
-	cout << filename2;
 
 
-	ifstream myFile(filename2, std::ifstream::in); // opens the file using the filename file path
+	ifstream myFile(filename2); // opens the file using the filename file path
 	//ifstream myFile;
 	//myFile << filename2;
 
@@ -95,21 +95,21 @@ int main()
 			comma_pos = aLine.find(',', 0);					// finds the positions of the commas.    
 			comma_pos2 = aLine.find(',', comma_pos + 1);      //(cplusplus.com):   string.find( look for this in the line , start at this position )  it returns what position it finds this at   
 			comma_pos3 = aLine.find(',', comma_pos2 + 1);
-			// check if no pore pressure data added
+			/* check if no pore pressure data added
 			if (comma_pos3 < 0 && comma_pos2 > 0)
 			{
 				MessageBox::Show("error, no pore pressure data in file. CPT data NOT uploaded.!  Please fill 4th column with zeros if no (u) data available");
 				break;
-			}
+			}*/
 
-			string depths, bcount;										    // the string pieces to each value that will be changed in to usable doubles soon
+			string depths, bcounts;										    // the string pieces to each value that will be changed in to usable doubles soon
 			depths = aLine.substr(0, comma_pos);								   // (http://www.cplusplus.com/reference/string/string/substr/) string.subtr() clips out a certain part of a string
-			bcount = aLine.substr(comma_pos + 1, aLine.length() - comma_pos - 1);    // string.substr( what pos in the string to start reading  , the length of string to read in )
+			bcounts = aLine.substr(comma_pos + 1, aLine.length() - comma_pos - 1);    // string.substr( what pos in the string to start reading  , the length of string to read in )
 			
 
 			double depthd, bcountd;			// double version of the values read in
 			depthd = atof(depths.c_str());			// ".c_str()" changes the c++ string into a c string to be able to use the "atof()" function
-			bcountd = atof(bcount.c_str()); // .atof() is a c function that changes c strings into doubles
+			bcountd = atof(bcounts.c_str()); // .atof() is a c function that changes c strings into doubles
 			
 			
 
@@ -117,9 +117,11 @@ int main()
 			bcount.push_back(bcountd);			// Filling in the vectors with the double values. These vectors will be used for the rest of the program to do all needed calculations
 			
 		}
+		
 		// The program always reads in a blank extra line 
 		//and this deletes that blank at the end:
 		//  "vector.pop_back()" deletes the last position in the vector. In this case it deletes the blank at the end of the vector
+		
 
 		//if error in pore pressure loading then avoid pop backs and exit loop
 		if (comma_pos3 < 0 && comma_pos2 > 0)
@@ -152,13 +154,3 @@ int main()
 
 
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
